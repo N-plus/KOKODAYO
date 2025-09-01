@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' show Platform;
 
+import 'package:kokodayo/simple_provider.dart';
+
+import '../app_state.dart';
+
 class RoleSelectionScreen extends StatefulWidget {
   const RoleSelectionScreen({super.key});
 
@@ -443,20 +447,13 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
     });
   }
 
+  
   void _onStartPressed() {
     HapticFeedback.mediumImpact();
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          '${selectedRole == 'parent' ? '親' : '子'}モードで開始します！',
-        ),
-        backgroundColor: Colors.green,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    );
+    final state = context.read<AppState>();
+    state.setRole(selectedRole);
+    final route = selectedRole == 'parent' ? '/parentCode' : '/childPair';
+    Navigator.pushReplacementNamed(context, route);
   }
+
 }
