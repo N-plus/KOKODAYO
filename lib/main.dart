@@ -29,7 +29,7 @@ class KokodayoApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const RoleSelectionScreen(),
-        '/parentCode': (context) => const ParentCodeScreen(),
+        '/parentCode': (context) => const ParentAddDeviceScreen(),
         '/childPair': (context) => const ChildPairingScreen(),
         '/parentHome': (context) => const ParentHomeScreen(),
         '/childAlarm': (context) => const ChildAlarmScreen(),
