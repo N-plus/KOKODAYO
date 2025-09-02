@@ -1,7 +1,15 @@
 class Device {
-  Device({required this.name, this.online = true, required this.lastSeen});
+  Device({
+    String? id,
+    required this.name,
+    this.online = true,
+    required this.lastSeen,
+    this.isRinging = false,
+  }) : id = id ?? DateTime.now().millisecondsSinceEpoch.toString();
 
-  final String name;
+  final String id;
+  String name;
   bool online;
   DateTime lastSeen;
+  bool isRinging;
 }
