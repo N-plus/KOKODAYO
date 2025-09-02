@@ -45,4 +45,23 @@ class AppState extends ChangeNotifier {
     devices.add(device);
     notifyListeners();
   }
+
+  void removeDevice(String id) {
+    devices.removeWhere((d) => d.id == id);
+    notifyListeners();
+  }
+
+  void renameDevice(String id, String newName) {
+    final device = devices.firstWhere((d) => d.id == id, orElse: () => throw ArgumentError('Device not found'));
+    device.name = newName;
+    notifyListeners();
+  }
+
+  void updateDevice(Device updated) {
+    final index = devices.indexWhere((d) => d.id == updated.id);
+    if (index != -1) {
+      devices[index] = updated;
+      notifyListeners();
+    }
+  }
 }
